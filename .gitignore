@@ -1,0 +1,13 @@
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Compiled binary addons
+build/Release
+
+# Dependency directory
+node_modules
+
+# Logs
+*.log

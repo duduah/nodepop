@@ -1,0 +1,107 @@
+{
+    "anuncios": [
+        {
+            "nombre" : "taza",
+            "venta" : false,
+            "precio" : 15,
+            "foto" : "tazaSpongeBob.jpg",
+            "tags" : ["lifestyle", "work"]
+        },
+        {
+            "nombre" : "Bolígrafo",
+            "venta" : true,
+            "precio" : 1,
+            "foto" : "boliJeringuilla.jpg",
+            "tags" : ["lifestyle"]
+        },
+        {
+            "nombre" : "Cable",
+            "venta" : true,
+            "precio" : 5.3,
+            "foto" : "cablePebble.jpg",
+            "tags" : ["mobile", "lifestyle"]
+        },
+        {
+            "nombre" : "Caja",
+            "venta" : true,
+            "precio" : 35.5,
+            "foto" : "cajaSorpresa.jpg",
+            "tags" : ["lifestyle", "work"]
+        },
+        {
+            "nombre" : "Auriculares",
+            "venta" : false,
+            "precio" : 27,
+            "foto" : "auriculares.jpg",
+            "tags" : ["lifestyle"]
+        },
+        {
+            "nombre" : "Botella",
+            "venta" : true,
+            "precio" : 4,
+            "foto" : "botellaMedioLlena.jpg",
+            "tags" : ["lifestyle"]
+        },
+        {
+            "nombre" : "HandGrip",
+            "venta" : false,
+            "precio" : 2,
+            "foto" : "handGrip.jpg",
+            "tags" : ["lifestyle"]
+        },
+        {
+            "nombre" : "Coche",
+            "venta" : true,
+            "precio" : 10500,
+            "foto" : "coche.jpg",
+            "tags" : ["lifestyle", "motor"]
+        },
+        {
+            "nombre" : "Cargador",
+            "venta" : false,
+            "precio" : 10,
+            "foto" : "cargadoriPhone.jpg",
+            "tags" : ["mobile"]
+        },
+        {
+            "nombre" : "Muñeco",
+            "venta" : false,
+            "precio" : 4.75,
+            "foto" : "toyAnimal.jpg",
+            "tags" : ["lifestyle"]
+        },
+        {
+            "nombre" : "Calefactor",
+            "venta" : true,
+            "precio" : 22.45,
+            "foto" : "calefactor.jpg",
+            "tags" : ["lifestyle", "work"]
+        },
+        {
+            "nombre" : "Pila",
+            "venta" : true,
+            "precio" : 1.75,
+            "foto" : "pila.jpg",
+            "tags" : ["mobile"]
+        },
+        {
+            "nombre" : "Pañuelos",
+            "venta" : true,
+            "precio" : 0.5,
+            "foto" : "clinex.jpg",
+            "tags" : ["lifestyle"]
+        }
+    ],
+    "usuarios": [
+        {
+            "nombre": "fulanito",
+            "email": "este@unfulanito.es",
+            "clave": "1234"
+        },
+        {
+            "nombre": "menganito",
+            "email": "este@menganito.es",
+            "clave": "1234"
+        }
+    ]
+}
