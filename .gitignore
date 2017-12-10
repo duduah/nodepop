@@ -3,6 +3,9 @@ pids
 *.pid
 *.seed
 
+# Environment variables
+.env
+
 # Compiled binary addons
 build/Release
 

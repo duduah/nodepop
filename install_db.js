@@ -1,5 +1,6 @@
 'use strict';
 
+require('dotenv').config();
 const connMongoose = require('./lib/connMongoose');
 const mongoose = require('mongoose');
 
