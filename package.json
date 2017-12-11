@@ -19,5 +19,26 @@
     "mongoose": "^4.13.6",
     "morgan": "~1.9.0",
     "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {},
+  "apidoc": {
+    "name": "nodepop",
+    "version": "0.0.1",
+    "description": "API Rest para consulta de anuncios",
+    "title": "nodepop API",
+    "url": "https://api.github.com/v1",
+    "sampleUrl": "https://api.github.com/v1",
+    "header": {
+      "title": "My own header title",
+      "filename": "./doc/header.md"
+    },
+    "footer": {
+      "title": "My own footer title",
+      "filename": "./doc/footer.md"
+    },
+    "template": {
+      "withCompare": true,
+      "withGenerator": true
+    }
   }
 }

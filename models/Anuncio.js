@@ -92,6 +92,45 @@ anuncioSchema.statics.deleteAll = function() {
     return Anuncio.remove({}).exec();
 };
 
+/**
+ * Comprueba el formato del precio enviado en el request.
+ * Si cumple con uno de estos formatos (formatoRango): [0-0 | 0- | -0 | 0 | -]
+ * Y salvando el último caso (-), si tiene algún número (numero), compone el filtro.
+ * @function
+ * @name getPrecioObject
+ * @param {String} [precio] - Rango de precios por el que filtrar la búsqueda.
+ * @return {Object} Devuelve un objeto con formato de filtro para la base de datos.
+ */
+anuncioSchema.statics.getPrecioObject = function(precio) {
+    let objectPrecio = {};
+    const formatoRango = /[0-9]*-?[0-9]*/; // valores que admite: [0-0 | 0- | -0 | 0 | - ]
+    const numero = /([0-9]+)/g;
+    
+    if (precio
+        && formatoRango.test(precio)    // comprobar si precio cumple el formato
+        && numero.test(precio)) {       // para el caso '-', comprobar si hay números
+        let numeros = precio.match(numero);
+
+        if (numeros.length > 1) {
+            objectPrecio.precio = {
+                '$gte': numeros[0],
+                '$lte': numeros[1]
+            };
+        } else if (precio.starsWitth('-')) {
+            objectPrecio.precio = {
+                '$lte': numeros[0]
+            };
+        }
+        else if (precio.endsWitth('-')) {
+            objectPrecio.precio = {
+                '$gte': numeros[0]
+            };
+        }        
+    }
+    console.log('Precio:', objectPrecio);
+    return objectPrecio;    
+}
+
 const Anuncio = mongoose.model('Anuncio', anuncioSchema);
 
 module.exports = Anuncio;

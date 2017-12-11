@@ -4,91 +4,91 @@
             "nombre": "taza",
             "venta": false,
             "precio": 15,
-            "foto": "tazaSpongeBob.jpg",
+            "foto": "images/anuncios/tazaSpongeBob.jpg",
             "tags": ["lifestyle", "work"]
         },
         {
             "nombre": "Bolígrafo",
             "venta": true,
             "precio": 1,
-            "foto": "boliJeringuilla.jpg",
+            "foto": "images/anuncios/boliJeringuilla.jpg",
             "tags": ["lifestyle"]
         },
         {
             "nombre": "Cable",
             "venta": true,
             "precio": 5.3,
-            "foto": "cablePebble.jpg",
+            "foto": "images/anuncios/cablePebble.jpg",
             "tags": ["mobile", "lifestyle"]
         },
         {
             "nombre": "Caja",
             "venta": true,
             "precio": 35.5,
-            "foto": "cajaSorpresa.jpg",
+            "foto": "images/anuncios/cajaSorpresa.jpg",
             "tags": ["lifestyle", "work"]
         },
         {
             "nombre": "Auriculares",
             "venta": false,
             "precio": 27,
-            "foto": "auriculares.jpg",
+            "foto": "images/anuncios/auriculares.jpg",
             "tags": ["lifestyle"]
         },
         {
             "nombre": "Botella",
             "venta": true,
             "precio": 4,
-            "foto": "botellaMedioLlena.jpg",
+            "foto": "images/anuncios/botellaMedioLlena.jpg",
             "tags": ["lifestyle"]
         },
         {
             "nombre": "HandGrip",
             "venta": false,
             "precio": 2,
-            "foto": "handGrip.jpg",
+            "foto": "images/anuncios/handGrip.jpg",
             "tags": ["lifestyle"]
         },
         {
             "nombre": "Coche",
             "venta": true,
             "precio": 10500,
-            "foto": "coche.jpg",
+            "foto": "images/anuncios/coche.jpg",
             "tags": ["lifestyle", "motor"]
         },
         {
             "nombre": "Cargador",
             "venta": false,
             "precio": 10,
-            "foto": "cargadoriPhone.jpg",
+            "foto": "images/anuncios/cargadoriPhone.jpg",
             "tags": ["mobile"]
         },
         {
             "nombre": "Muñeco",
             "venta": false,
             "precio": 4.75,
-            "foto": "toyAnimal.jpg",
+            "foto": "images/anuncios/toyAnimal.jpg",
             "tags": ["lifestyle"]
         },
         {
             "nombre": "Calefactor",
             "venta": true,
             "precio": 22.45,
-            "foto": "calefactor.jpg",
+            "foto": "images/anuncios/calefactor.jpg",
             "tags": ["lifestyle", "work"]
         },
         {
             "nombre": "Pila",
             "venta": true,
             "precio": 1.75,
-            "foto": "pila.jpg",
+            "foto": "images/anuncios/pila.jpg",
             "tags": ["mobile"]
         },
         {
             "nombre": "Pañuelos",
             "venta": true,
             "precio": 0.5,
-            "foto": "clinex.jpg",
+            "foto": "images/anuncios/clinex.jpg",
             "tags": ["lifestyle"]
         }
     ],
