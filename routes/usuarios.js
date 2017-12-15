@@ -15,9 +15,9 @@ router.post('/register', [
         .withMessage('Debe indicar una dirección de correo electrónico')
         .trim()
         .isEmail()
-        .withMessage('Debe ser una dirección de correo electrónico válida.')
+        .withMessage('Debe indicar una dirección de correo electrónico válida.')
         .normalizeEmail()
-        .custom((value) => {        
+        .custom((value) => {
             return Usuario.getUserByEmail(value).then((usuario) => {
                 if (usuario) {
                     throw new Error('Esta dirección de correo electrónico ya está registrada');
@@ -50,17 +50,38 @@ router.post('/register', [
 /**
  * @api {post} /usuarios/authenticate Autenticación de usuario.
  */
-router.post('/authenticate', async (req, res, next) => {
+router.post('/authenticate', [
+    body('email').exists()
+        .withMessage('Debe indicar una dirección de correo electrónico')
+        .trim()
+        .isEmail()
+        .withMessage('Debe indicar una dirección de correo electrónico válida.')
+        .normalizeEmail()
+        .custom((value) => {
+            return Usuario.getUserByEmail(value).then((usuario) => {
+                if (!usuario) {
+                    throw new Error('La dirección de correo electrónico no es correcta');
+                } else {
+                    return true;
+                }
+            });
+        }),
+    body('clave').exists()
+        .withMessage('Debe indicar una clave')
+], async (req, res, next) => {
     try {
+        validationResult(req).throw();
+
         // Recuperamos credenciales
         const email = req.body.email;
         const clave = req.body.clave;
 
-        if (!email || !clave) {
-            const error = new Error('Invalid user or password');
-            error.status = 422; // Unprocessable Entity
-            return next(error);
-        }
+        // if (!email || !clave) {
+        //     const error = new Error('Invalid user or password');
+        //     error.status = 422; // Unprocessable Entity
+        //     return next(error);
+        // }
+
         // Buscamos el usuario en bbdd
         const usuarioCandidato = await Usuario.getUserByEmail(email);
         if (!usuarioCandidato) {
