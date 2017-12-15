@@ -44,13 +44,12 @@ app.use(function(req, res, next) {
 // error handler
 app.use(function(err, req, res, next) {
 
-  // Manejar errores de express-validator
-  if (err.array) {
+  if (err.array) { // errores de validaciones (express-validator)
     err.status = 422 // Unprocessable Entity
-    const errInfo = err.array({ onlyFirstError: true })[0];
+    const errValidationInfo = err.array({ onlyFirstError: true })[0];
     err.message = isAPI(req)
       ? { message: 'Not valid', errors: err.mapped()}   // para peticiones a la API
-      : `Not valid - ${errInfo.param} ${errInfo.msg}`;  // para otras peticiones
+      : `Not valid - ${errValidationInfo.param} ${errValidationInfo.msg}`;  // para otras peticiones
   }
 
   res.status(err.status || 500);
@@ -68,20 +67,14 @@ app.use(function(err, req, res, next) {
 });
 
 /**
- * Comprueba si se está haciendo la petición a la API.
+ * Comprueba si se está haciendo la petición a la API, ya sea para la
+ * consulta de anuncios como para la gestión de usuarios.
  * @param {Object} req - Objeto request
- * @returns true si se está accediendo a /apiv...
+ * @returns true si se está accediendo a /apiv... o a /usuarios...
  */
 function isAPI(req) {
-  return identifyByURL(req, '/apiv');
-}
-
-function isUsuarios(req) {
-  return identifyByURL(req, '/usuarios');
-}
-
-function identifyByURL(req, urlSnippet) {
-  return req.originalUrl.indexOf(urlSnippet) === 0;
+  return req.originalUrl.indexOf('/apiv') === 0
+    || req.originalUrl.indexOf('/usuarios') === 0;
 }
 
 module.exports = app;

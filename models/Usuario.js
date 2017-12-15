@@ -49,7 +49,7 @@ usuarioSchema.statics.deleteAll = function() {
 };
 
 
-usuarioSchema.statics.getUser = function(email) {
+usuarioSchema.statics.getUserByEmail = function(email) {
     const query = Usuario.findOne({ 'email': email });
 
     return query.exec();
