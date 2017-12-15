@@ -96,12 +96,12 @@
         {
             "nombre": "fulanito",
             "email": "este@unfulanito.es",
-            "clave": "1234"
+            "clave": "1111"
         },
         {
             "nombre": "menganito",
             "email": "este@menganito.es",
-            "clave": "1234"
+            "clave": "2222"
         }
     ]
 }

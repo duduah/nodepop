@@ -8,8 +8,15 @@
 const express = require('express');
 const router = express.Router();
 const retrieveJSON = require('../../lib/retrieveJSON');
+const jwtAuthentication = require('../../lib/jwtAuthentication');
 
 const Anuncio = require('../../models/Anuncio');
+
+/**
+ * Validar credenciales
+ */
+router.use(jwtAuthentication());
+
 
 /**
  * @api {get} /apiv2/anuncios Consulta de anuncios filtrando según los parámetros recibidos.

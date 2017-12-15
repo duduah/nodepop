@@ -89,6 +89,7 @@ anuncioSchema.statics.getList = function(filters, limit, skip, sort, fields) {
  * @return {Promise} Promesa de la ejecución del borrado de todos los documentos.
  */
 anuncioSchema.statics.deleteAll = function() {
+    //return Anuncio.collection.drop().exec();
     return Anuncio.remove({}).exec();
 };
 

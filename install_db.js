@@ -3,10 +3,6 @@
 require('dotenv').config();
 const connMongoose = require('./lib/connMongoose');
 const mongoose = require('mongoose');
-
-// const Anuncio = require('./models/Anuncio');
-// const Usuario = require('./models/Usuario');
-
 const Anuncio = mongoose.model('Anuncio');
 const Usuario = mongoose.model('Usuario');
 
@@ -49,11 +45,17 @@ function readDbFile() {
 function persistDataFromFile(dbModel, data) {
     return new Promise((resolve, reject) => {
         const nombreColeccion = dbModel.getCollectionName();        
-        const datosModelo = data[nombreColeccion];
+        let datosModelo = data[nombreColeccion];
+        console.log('datosModelo: ', datosModelo);
         if (!datosModelo.length || datosModelo.length === 0) {
             reject(new Error(`No hay datos para cargar la tabla ${nombreColeccion}`));
             return;
         }
+        // if (dbModel === Usuario) {
+        //     Ver forma de:
+        //     1. Validar que no se repitan emails
+        //     2. Encriptar claves del json para guardarlas hasheadas
+        // }
         dbModel.insertMany(datosModelo, (err, docs) => {
             if (err) {
                 console.log('Código de error', err.code);
@@ -66,7 +68,8 @@ function persistDataFromFile(dbModel, data) {
 }
 
 /**
- * Función priincipal que lee el fichero y realiza la precarga de la bbdd.
+ * Función principal.
+ * Limpia bbdd, lee el fichero y realiza la precarga de la bbdd.
  * @function
  * @name feedDB
  */
