@@ -92,7 +92,7 @@ router.post('/authenticate', [
 
         usuarioCandidato.comprobarPassword(clave, function(err, passwordMatched) {
             if (err || !passwordMatched) {
-                throw err;
+                return next(new Error('Clave incorrecta'));
             }
             jwt.sign({ 'userId': usuarioCandidato._id}, process.env.JWT_SECRET_KEY, {
                 expiresIn: process.env.JWT_EXPIRES_IN
