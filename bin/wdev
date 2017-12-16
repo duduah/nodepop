@@ -8,61 +8,26 @@ require('dotenv').config();
 
 var app = require('../app');
 var debug = require('debug')('nodepop:server');
-// const http = require('http');
-const https = require('https');
-const fs = require('fs');
+const http = require('http');
 const cluster = require('cluster');
 
 /**
  * Get port from environment and store in Express.
  */
-var port = normalizePort(process.env.PORT || '443');
+var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**
- * HTTPS
- * Leer ficheros de certificados.
+ * Create HTTP server.
  */
-const httpsOptions = {
-  key: fs.readFileSync(process.env.HTTPS_KEY_FILE),
-  cert: fs.readFileSync(process.env.HTTPS_KEY_CERT)
-};
+var server = http.createServer(app);
 
-if (cluster.isMaster) {
-  const availableCPUs = require('os').cpus().length;
-  console.log('Master cluster montando', availableCPUs, 'workers...');
-
-  for (let i = 0; i < availableCPUs; i++) {
-    cluster.fork();
-  }
-
-  cluster.on('listening', (worker, address) => {
-    console.log(`Worker ${worker.id} con PID ${worker.process.pid} conectado a puerto ${address.port}`);
-  });
-
-  /**
-   * Clona un cluster cuando otro muere.
-   */
-  cluster.on('exit', (worker, code, signal) => {
-    console.log('Worker', worker.process.pid, 'muerto. Código:', code, '. Señal:', signal);
-    console.log('Arrancando nuevo worker...');
-    cluster.fork();
-  });
-
-} else {
-  /**
-   * Create HTTPS server.
-   */
-  var server = https.createServer(httpsOptions, app);
-  // var server = http.createServer(app);
-  
-  /**
-   * Listen on provided port, on all network interfaces.
-   */
-  server.listen(port);
-  server.on('error', onError);
-  server.on('listening', onListening);
-}
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
 
 
 /**
