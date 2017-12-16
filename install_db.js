@@ -51,15 +51,10 @@ function persistDataFromFile(dbModel, data) {
             reject(new Error(`No hay datos para cargar la tabla ${nombreColeccion}`));
             return;
         }
-        // if (dbModel === Usuario) {
-        //     Ver forma de:
-        //     1. Validar que no se repitan emails
-        //     2. Encriptar claves del json para guardarlas hasheadas
-        // }
-        dbModel.insertMany(datosModelo, (err, docs) => {
+        
+        dbModel.create(datosModelo, (err, docs) => {
             if (err) {
-                console.log('Código de error', err.code);
-                reject(new Error(`No se han podido insertar los datos en la tabla ${nombreColeccion}: ${err}`));
+                reject(new Error(`No se han podido insertar los datos en la tabla ${nombreColeccion}: ${err.errmsg}`));
                 return;
             }
             resolve();
@@ -74,13 +69,8 @@ function persistDataFromFile(dbModel, data) {
  * @name feedDB
  */
 async function feedDB() {
-    console.log('Borrando registros de la colección "anuncios"');
-    await Anuncio.deleteAll();
-    console.log('............................................ OK');
-    console.log('Borrando registros de la colección "usuarios"');
-    await Usuario.deleteAll();
-    console.log('............................................ OK');
-    
+    await Anuncio.db.dropDatabase();
+
     let data = await readDbFile();
     console.log('Guardado datos del fichero', fileBDConfig,'en la colección "anuncios"');
     await persistDataFromFile(Anuncio, data);

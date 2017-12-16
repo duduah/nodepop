@@ -52,7 +52,7 @@ router.get('/', async (req, res, next) => {
         }
         if (precio) {
             let objectPrecio = Anuncio.getPrecioObject(precio);
-            console.log('objectPrecio = ', objectPrecio);
+
             if (objectPrecio && Object.keys(objectPrecio).length > 0) {
                 filter.precio = objectPrecio;
             }
@@ -60,7 +60,7 @@ router.get('/', async (req, res, next) => {
         if (nombre) {
             filter.nombre = new RegExp('^' + nombre, 'i');
         }
-console.log('.................filter:', filter);
+
         const rows = await Anuncio.getList(filter);
 
         res.json(retrieveJSON.setResult(retrieveJSON.OK, rows));

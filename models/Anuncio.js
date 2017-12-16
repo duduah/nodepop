@@ -83,17 +83,6 @@ anuncioSchema.statics.getList = function(filters, limit, skip, sort, fields) {
 };
 
 /**
- * Elimina todos los documentos de la colección del modelo.
- * @name deleteAll
- * @static
- * @return {Promise} Promesa de la ejecución del borrado de todos los documentos.
- */
-anuncioSchema.statics.deleteAll = function() {
-    //return Anuncio.collection.drop().exec();
-    return Anuncio.remove({}).exec();
-};
-
-/**
  * Comprueba el formato del precio enviado en el request.
  * Si cumple con uno de estos formatos (formatoRango): [0-0 | 0- | -0 | 0 | -]
  * Y salvando el último caso (-), si tiene algún número (numero), compone el filtro.
