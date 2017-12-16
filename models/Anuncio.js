@@ -105,30 +105,34 @@ anuncioSchema.statics.deleteAll = function() {
 anuncioSchema.statics.getPrecioObject = function(precio) {
     let objectPrecio = {};
     const formatoRango = /[0-9]*-?[0-9]*/; // valores que admite: [0-0 | 0- | -0 | 0 | - ]
-    const numero = /([0-9]+)/g;
-    
+    const gruposFormatoNumero = /([0-9]+)/g;
+    const formatoNumero = /[0-9]+/;
+
     if (precio
         && formatoRango.test(precio)    // comprobar si precio cumple el formato
-        && numero.test(precio)) {       // para el caso '-', comprobar si hay números
-        let numeros = precio.match(numero);
+        && gruposFormatoNumero.test(precio)) {       // para el caso '-', comprobar si hay números
+        let numeros = precio.match(gruposFormatoNumero); // 
 
         if (numeros.length > 1) {
-            objectPrecio.precio = {
+            objectPrecio = {
                 '$gte': numeros[0],
                 '$lte': numeros[1]
             };
-        } else if (precio.starsWitth('-')) {
-            objectPrecio.precio = {
+        } else if (precio === '-') {
+            return objectPrecio;
+        } else if (precio.startsWith('-')) {
+            objectPrecio = {
                 '$lte': numeros[0]
             };
-        }
-        else if (precio.endsWitth('-')) {
-            objectPrecio.precio = {
+        } else if (precio.endsWith('-')) {
+            objectPrecio = {
                 '$gte': numeros[0]
             };
-        }        
+        } else {
+            objectPrecio = precio;
+        }
     }
-    console.log('Precio:', objectPrecio);
+    console.log('objectPrecio = ', objectPrecio);
     return objectPrecio;    
 }
 
