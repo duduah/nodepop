@@ -22,9 +22,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', require('./routes/index'));
-// app.use('/users', require('./routes/users'));
-
 // Login
 app.use('/usuarios', require('./routes/usuarios'));
 
@@ -48,14 +45,13 @@ app.use(function(err, req, res, next) {
     err.status = 422 // Unprocessable Entity
     const errValidationInfo = err.array({ onlyFirstError: true })[0];
     err.message = isAPI(req)
-      ? { message: 'Not valid', errors: err.mapped()}   // para peticiones a la API
+      ? retrieveJSON.as(req, err.message, err.mapped())   // para peticiones a la API
       : `Not valid - ${errValidationInfo.param} ${errValidationInfo.msg}`;  // para otras peticiones
   }
 
   res.status(err.status || 500);
-  
   if (isAPI(req)) {
-    res.json(retrieveJSON.setError(err.message));
+    res.json(retrieveJSON.as(req, err.message));
     return;
   }
   // set locals, only providing error in development

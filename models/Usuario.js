@@ -64,9 +64,14 @@ usuarioSchema.pre('save', function(next) {
         }
         // cambiamos la clave en texto limpio por la hasheada
         user.clave = hash;
-        console.log('User.clave = ', user.clave);
         next();
     });
+});
+
+usuarioSchema.post('save', function(err, doc, next) {
+    if (err) {
+        return next(err);
+    }
 });
 
 /**

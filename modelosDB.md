@@ -36,14 +36,14 @@ Para la colección de **usuarios** registrados el modelo es:
 }
 ```
 
-> **Nota**: el email es una clave única que identifica a cada usuario. No podrán darse de alta usuarios con una dirección de correo electrónico que ya esté registrada en la base de datos.
+> **Nota**: el email es una **clave única** que identifica a cada usuario. No podrán darse de alta usuarios con una dirección de correo electrónico que ya esté registrada en la base de datos.
 
 Para más información consultar la definición del modelo en [models/Usuario.js](./models/Usuario.js).
 
 
 # Formato del fichero de datos.
 
-El fichero `dataInit.json` con los datos de muestra para la precarga de la base de datos de esta API contendrá:
+El fichero [dataInit.json](./dataInit.json) contiene los datos de muestra para la precarga de la base de datos de esta API, que son:
 
 * Un listado de **anuncios**.
 * Un listado de **usuarios** de pruebas.
@@ -75,3 +75,4 @@ El formato del fichero se ha definido en base a ambas colecciones de la forma si
 
 > **Importante**: los datos de este fichero deben seguir el modelo tanto para anuncios como para usuarios respectivamente. Un cambio en la estructura del fichero, en los nombres de cualquier campo como en los de ambas colecciones (`anuncios` y `usuarios`) no hará posible la precarga de la base de datos.
 
+Teniendo esto en cuenta, si por ejemplo se añaden al fichero usuarios con el mismo "email", la precarga dará un error ya que esta campo es **clave única**, o si algún anuncio no tiene un `true` o `false` en el campo "venta".

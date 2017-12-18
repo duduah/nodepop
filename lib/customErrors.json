@@ -1,0 +1,166 @@
+{
+    "TOKEN_REQUIRED": {
+        "code": "TOKEN_REQUIRED",
+        "status": 401,
+        "success": false,
+        "response": {
+            "es": {
+                "title": "Sin credenciales",
+                "detail": "No se han enviado credenciales. Debe autenticarse para acceder a esta información."
+            },
+            "en": {
+                "title": "Token required",
+                "detail": "Didn't send your credencials. So, you're not allowed."
+            }
+        }
+    },
+    "INVALID_TOKEN": {
+        "code": "INVALID_TOKEN",
+        "status": 401,
+        "success": false,
+        "response": {
+            "es": {
+                "title": "Credenciales incorrectas",
+                "detail": "Las credenciales enviadas no son correctas."
+            },
+            "en": {
+                "title": "Invalid token",
+                "detail": "The token received is wrong."
+            }
+        }
+    },
+    "WRONG_PASSWORD": {
+        "code": "WRONG_PASSWORD",
+        "status": 404,
+        "success": false,
+        "response": {
+            "es": {
+                "title": "Clave incorrecta",
+                "detail": "La clave introducida para identificarse como usuario no es correcta."
+            },
+            "en": {
+                "title": "Wrong password",
+                "detail": "The password provided doesn't match."
+            }
+        }
+    },
+    "WRONG_USER": {
+        "code": "WRONG_USER",
+        "status": 404,
+        "success": false,
+        "response": {
+            "es": {
+                "title": "Usuario no registrado",
+                "detail": "El usuario introducido no está registrado en la aplicación."
+            },
+            "en": {
+                "title": "User doesn't exist",
+                "detail": "The user is not registered in the application."
+            }
+        }
+    },
+    "WRONG_EMAIL": {
+        "code": "WRONG_EMAIL",
+        "status": 422,
+        "success": false,
+        "response": {
+            "es": {
+                "title": "Dirección de email incorrecta",
+                "detail": "La dirección de correo electrónico introducida debe cumplir con el formato estándar."
+            },
+            "en": {
+                "title": "Wrong email address format",
+                "detail": "The email address format doesn't match the standard"
+            }
+        }
+    },
+    "WRONG_AUTHENTICATION": {
+        "code": "WRONG_AUTHENTICATION",
+        "status": 422,
+        "success": false,
+        "response": {
+            "es": {
+                "title": "Identificación incorrecta",
+                "detail": "Los datos introducidos para identificarse como usuario no cumplen con las validaciones establecidas."
+            },
+            "en": {
+                "title": "Wrong authentication",
+                "detail": "User and/or password are wrong. So you are not allowed."
+            }
+        },
+        "customMessages": {
+            "EMAIL_NOT_REGISTERED": {
+                "code": "EMAIL_NOT_REGISTERED",
+                "message": {
+                    "es": "La dirección de correo electrónico introducida no está registrada",
+                    "en": "We couldn't find that email address."
+                }
+            },
+            "MUST_ENTRY_EMAIL": {
+                "code": "MUST_ENTRY_EMAIL",
+                "message": {
+                    "es": "Debe indicar una dirección de correo",
+                    "en": "Email address must be provided"
+                }
+            },
+            "WRONG_EMAIL_FORMAT": {
+                "code": "WRONG_EMAIL_FORMAT",
+                "message": {
+                    "es": "Debe indicar una dirección de correo electrónico válida",
+                    "en": "The email address format doesn't match the standard"
+                }
+            }
+        }
+    },
+    "WRONG_REGISTRY": {
+        "code": "WRONG_REGISTRY",
+        "status": 422,
+        "success": false,
+        "response": {
+            "es": {
+                "title": "Error de validación en el registro de su usuario",
+                "detail": "Los datos proporcionados para su registro como usuarios no cumplen con las validaciones establecidas"
+            },
+            "en": {
+                "title": "Error in your user registratrion",
+                "detail": "Data provided for your registry does not pass validation requirements"
+            }
+        },
+        "customMessages": {
+            "EMAIL_ALREADY_EXIST": {
+                "code": "EMAIL_ALREADY_EXIST",
+                "message": {
+                    "es": "Esta dirección de correo electrónico ya está registrada. Por favor, use otra distinta",
+                    "en": "Another user is registered with this email address. Please, use another one"
+                }
+            },
+            "MUST_ENTRY_EMAIL": {
+                "code": "MUST_ENTRY_EMAIL",
+                "message": {
+                    "es": "Debe indicar una dirección de correo electrónico",
+                    "en": "Email address must be provided"
+                }
+            },
+            "WRONG_EMAIL_FORMAT": {
+                "code": "WRONG_EMAIL_FORMAT",
+                "message": {
+                    "es": "Debe indicar una dirección de correo electrónico válida",
+                    "en": "The email address format doesn't match the standard"
+                }
+            },
+            "MUST_ENTRY_USERNAME": {
+                "code": "MUST_ENTRY_USERNAME",
+                "message": {
+                    "es": "Debe indicar un nombre de usuario",
+                    "en": "The user name must be provided"
+                }
+            },
+            "MUST_ENTRY_PASSWORD": {
+                "code": "MUST_ENTRY_PASSWORD",
+                "message": {
+                    "es": "Debe indicar una clave",
+                    "en": "The password must be provided"
+                }
+            }
+        }
+    }}

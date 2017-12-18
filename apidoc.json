@@ -3,14 +3,14 @@
   "version": "0.0.1",
   "description": "API Rest para consulta de anuncios",
   "title": "nodepop API",
-  "url" : "https://api.github.com/v1",
-  "sampleUrl": "https://api.github.com/v1",
+  "url" : "",
+  "sampleUrl": "https://www.myweb.com",
   "header": {
-    "title": "My own header title",
+    "title": "General",
     "filename": "./doc/header.md"
   },
   "footer": {
-    "title": "My own footer title",
+    "title": "Para más información",
     "filename": "./doc/footer.md"
   },
   "template": {

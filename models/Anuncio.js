@@ -53,7 +53,7 @@ anuncioSchema.statics.getCollectionName = () => {
  * @return {[String]} Lista de tags.
  */
 anuncioSchema.statics.getTagList = () => {
-    return tagList;
+    return { 'tags': tagList} ;
 };
 
 /**
@@ -121,7 +121,6 @@ anuncioSchema.statics.getPrecioObject = function(precio) {
             objectPrecio = precio;
         }
     }
-    console.log('objectPrecio = ', objectPrecio);
     return objectPrecio;    
 }
 

@@ -36,7 +36,6 @@ function readDbFile() {
                 reject(new Error(`El fichero ${fileBDConfig} no contiene datos para la precarga de la tabla ${Usuario.getCollectionName()}`));
                 return;
             }
-            console.log('Fichero', fileBDConfig, 'leido correctamente.');
             resolve(jsonContent);
         });
     });
@@ -46,7 +45,7 @@ function persistDataFromFile(dbModel, data) {
     return new Promise((resolve, reject) => {
         const nombreColeccion = dbModel.getCollectionName();        
         let datosModelo = data[nombreColeccion];
-        console.log('datosModelo: ', datosModelo);
+
         if (!datosModelo.length || datosModelo.length === 0) {
             reject(new Error(`No hay datos para cargar la tabla ${nombreColeccion}`));
             return;
@@ -54,7 +53,7 @@ function persistDataFromFile(dbModel, data) {
         
         dbModel.create(datosModelo, (err, docs) => {
             if (err) {
-                reject(new Error(`No se han podido insertar los datos en la tabla ${nombreColeccion}: ${err.errmsg}`));
+                reject(new Error(`No se han podido insertar los datos en la tabla ${nombreColeccion}.\n\nError: ${err}`));
                 return;
             }
             resolve();
@@ -69,12 +68,15 @@ function persistDataFromFile(dbModel, data) {
  * @name feedDB
  */
 async function feedDB() {
+    console.log('Borrando base de datos...');
     await Anuncio.db.dropDatabase();
-
+    console.log('............................................ OK');
+    
     let data = await readDbFile();
     console.log('Guardado datos del fichero', fileBDConfig,'en la colección "anuncios"');
     await persistDataFromFile(Anuncio, data);
     console.log('............................................ OK');
+
     console.log('Guardado datos del fichero', fileBDConfig,'en la colección "usuarios"');
     await persistDataFromFile(Usuario, data);
     console.log('............................................ OK');
@@ -89,7 +91,7 @@ connMongoose.once('open', () => {
         process.exit(0);
     })
     .catch(err => {
-        console.log('No se ha realizado la precarga. Error:', err);
+        console.log('No se ha realizado la precarga de la base de datos.\n', err);
         process.exit(1);
     });
 });
