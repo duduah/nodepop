@@ -14,7 +14,7 @@ const cluster = require('cluster');
 /**
  * Get port from environment and store in Express.
  */
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || process.env.PORT_DEFAULT_DEV);
 app.set('port', port);
 
 /**
