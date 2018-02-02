@@ -69,8 +69,12 @@ function persistDataFromFile(dbModel, data) {
  */
 async function feedDB() {
     console.log('Borrando base de datos...');
-    await Anuncio.db.dropDatabase();
-    console.log('............................................ OK');
+    // await Anuncio.db.dropDatabase(); 
+    await Anuncio.db.collection("anuncios").remove({});
+    console.log('anuncios borrados .......................... OK');
+    
+    await Usuario.db.collection("usuarios").remove({});
+    console.log('anuncios borrados .......................... OK');
     
     let data = await readDbFile();
     console.log('Guardado datos del fichero', fileBDConfig,'en la colección "anuncios"');
