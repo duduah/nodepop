@@ -147,7 +147,7 @@ router.post('/authenticate', [
             });
         }),
     body('clave').exists()
-        .withMessage('Debe indicar una clave')
+        .withMessage(cError.WRONG_AUTHENTICATION.customMessages.MUST_ENTRY_PASSWORD.code)
 ], async (req, res, next) => {
     try {
         // validationResult(req).throw();

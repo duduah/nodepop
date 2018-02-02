@@ -109,6 +109,13 @@
                     "es": "Debe indicar una dirección de correo electrónico válida",
                     "en": "The email address format doesn't match the standard"
                 }
+            },
+            "MUST_ENTRY_PASSWORD": {
+                "code": "MUST_ENTRY_PASSWORD",
+                "message": {
+                    "es": "Debe indicar una clave",
+                    "en": "The password must be provided"
+                }
             }
         }
     },
@@ -163,4 +170,5 @@
                 }
             }
         }
-    }}
+    }
+}
