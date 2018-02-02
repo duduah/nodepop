@@ -8,8 +8,7 @@ require('dotenv').config();
 
 var app = require('../app');
 var debug = require('debug')('nodepop:server');
-// const http = require('http');
-const https = require('https');
+const http = require('http');
 const fs = require('fs');
 const cluster = require('cluster');
 
@@ -18,15 +17,6 @@ const cluster = require('cluster');
  */
 var port = normalizePort(process.env.PORT || process.env.PORT_DEFAULT_PROD);
 app.set('port', port);
-
-/**
- * HTTPS
- * Leer ficheros de certificados.
- */
-const httpsOptions = {
-  key: fs.readFileSync(process.env.HTTPS_KEY_FILE),
-  cert: fs.readFileSync(process.env.HTTPS_KEY_CERT)
-};
 
 if (cluster.isMaster) {
   const availableCPUs = require('os').cpus().length;
@@ -50,11 +40,7 @@ if (cluster.isMaster) {
   });
 
 } else {
-  /**
-   * Create HTTPS server.
-   */
-  var server = https.createServer(httpsOptions, app);
-  // var server = http.createServer(app);
+  var server = http.createServer(app);
   
   /**
    * Listen on provided port, on all network interfaces.
