@@ -12,11 +12,12 @@
         for (i = 0; i < rows.length; i++) {
           const rowJson = rows[i]; //JSON.stringify(rows[i]);
     %>
-          <div>
+          <div style="border:1px; border-color: black">
               <p><b>Nombre: </b> <%= rowJson.nombre %></p>
-              <p><b>Precio:< /b> <%= rowJson.precio %></p>
+              <p><b>Precio:</b> <%= rowJson.precio %></p>
                 <img src="<%= rowJson.foto %>" width="20%" />
             </div>
+            <hr/>
           
     <%
         }
