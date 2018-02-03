@@ -170,5 +170,20 @@
                 }
             }
         }
+    },
+    "GENERAL_ERROR": {
+        "code": "GENERAL_ERROR",
+        "status": 422,
+        "success": false,
+        "response": {
+            "es": {
+                "title": "Error genérico",
+                "detail": "Se está haciendo una petición incorrecta a la API."
+            },
+            "en": {
+                "title": "General error",
+                "detail": "Wrong request."
+            }
+        }
     }
 }

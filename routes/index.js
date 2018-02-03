@@ -8,7 +8,7 @@ router.get('/', async (req, res, next) => {
   try {
     let filter = {};
     const rows = await Anuncio.getList(filter);
-console.log('DGS rows = ', rows);
+
     res.locals.rows = rows;
     res.json(retrieveJSON.setResult(retrieveJSON.OK, rows));
 } catch (err) {
