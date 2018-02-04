@@ -11,8 +11,8 @@ or upper
 
 ### <a id="index"></a>Índice:
 
-* [Instalación.](#instalacion)
-  1. [Prerrequisitos.](#prerrequisitos)
+* [Instalación](#instalacion)
+  1. [Prerrequisitos](#prerrequisitos)
   2. [Clonar este repositorio e instalar dependencias.](#installStep1)
   3. [Especificar las variables de entorno.](#installStep2)
   4. [Precargar la base de datos.](#installStep3)
@@ -20,6 +20,7 @@ or upper
   1. [Entorno de desarrollo.](#entornoDev)
   2. [Entorno de producción.](#entornoProd)
 * [Documentación de la API](#docApi)
+* [**Práctica DevOps**](#devOps)
 
 
 **nodepop** es una API Rest que proporciona anuncios con información sobre artículos que buscan o que venden a aquellos usuarios que estén registrados.
@@ -60,32 +61,32 @@ Descargar este repositorio o clonarlo desde `git` en un directorio que puede lla
 Una vez clonado, entrar en dicho directorio e instalar las dependencias con **npm**. Desde línea de comandos:
 
 ```shell
-# Entrar en el directorio
 $ cd nodepop
-
-# Instalar dependencias
-$ npm install
+nodepop/$ npm install
 ```
 > Para más información sobre los paquetes requeridos para esta aplicación consultar el fichero [package.json](package.json).
 
 ### 3. <a id="installStep2"></a>Especificar las variables de entorno.
-En el directorio de la aplicación se puede encontrar un fichero [.env.example](.env.example). **Hay que renombrar dicho fichero a `.env`** y configurado como se indica a continuación para que la API funcione correctamente.
+En el directorio de la aplicación se puede encontrar un fichero [.env.example](.env.example). **Renombrar dicho fichero a `.env`** y configurar las *variables de entorno* que utilizará la aplicación como se indica a continuación para que la API funcione correctamente:
 
-Este fichero contiene una lista de **variables de entorno** necesarias para la ejecución de la aplicación. Las variables son:
+#### Aplicación
 
-**Base de datos**
+* `PORT_DEFAULT_DEV` = puerto por el que atenderá la aplicación **nodepop** en **desarrollo**.
+* `PORT_DEFAULT_PROD` = puerto por el que atenderá la aplicación **nodepop** en **producción**.
+
+#### Base de datos
 
 * `NODEPOP_MONGODB_USER` = nombre del usuario de bbdd con que la API se conectará a la bbdd mongoDB. Si no se indica, no se podrá acceder a la bbdd a menos que ésta no tenga control de acceso.
 * `NODEPOP_MONGODB_PASSWORD` = clave de dicho usuario. Si no se indica, no se podrá acceder a la bbdd a menos que ésta no tenga control de acceso.
 * `NODEPOP_MONGODB_HOST` (default=localhost). Host en el que se encuentra la base de datos. Si no se indica, se asumirá que es el host por defecto.
 * `NODEPOP_MONGODB_PORT` (default=3000). Puerto desde el que la bbdd mongoDB escuchará las peticiones. Si no se indica, se asumirá que es el puerto por defecto.
 
-**Autenticación**
+#### Autenticación
 
 * `JWT_SECRET_KEY` = clave privada con la que se encriptarán las credenciales de usuario.
 * `JWT_EXPIRES_IN` = periodo de vida de las credenciales.
 
-**Hash de claves de usuario** [^bcryptMongoBlog]
+#### Hash de claves de usuario [(*)][bcryptMongoBlog]
 
 * `BCRYPT_SALT_WORK_FACTOR` = número entero que representa el factor de trabajo para la encriptación de claves.
 
@@ -94,38 +95,42 @@ Este fichero contiene una lista de **variables de entorno** necesarias para la e
 * `HTTPS_KEY_FILE` = Ruta del fichero key del certificado.
 * `HTTPS_KEY_CERT` = Ruta del fichero cert del certificado.
 
-**Importante**: en caso de utilizar este fichero `.env` y por su naturaleza crítica **este fichero debe estar protegido y con acceso restringido**.
+> **Importante**: en caso de utilizar este fichero `.env` y por su naturaleza crítica **este fichero debe estar protegido y con acceso restringido**. Esto es, el usuario responsable de gestionar el sistema en producción debe **quitar todos los permisos a todos los usuarios** (incluido el de lectura), dejándose solo a si mismo los  permisos de lectura y escritura.  
+> Para ello, dicho usuario deberá acceder por consola al directorio de **nodepop** y ejecutar el siguiente comando:
+> 
+> ```shell
+> admin@server:nodepop/$ chmod go-rwx .env
+> ```
 
 ### 4. <a id="installStep3"></a>Precargar la base de datos.
 Desde un terminal, en el directorio de `nodepop` y ejecutar:
 
 ```bash
-$ npm run installDB
+nodepop/$ npm run installDB
 ```
 Al ejecutar este comando:
 
 - [x] Se creará la base de datos **nodepop** en [mongoDB](https://www.mongodb.com/).
 - [x] Se crearán las colecciones de **anuncios** y **usuarios** con datos de muestra.
 
-Si ya se ha creado con anterioridad la base de datos **nodepop** y ambas colecciones, esta ejecución borrará todos los documentos de **anuncios** y **usuarios** y los volverá a cargar con los datos de muestra.
+Si ya se ha creado con anterioridad la base de datos **nodepop** con ambas colecciones, esta ejecución borrará todos los documentos de **anuncios** y **usuarios** y los volverá a cargar con los datos de muestra.
 
 > **Nota**: los datos de muestra están en el fichero [`dataInit.json`](./dataInit.json). Se puede modificar dicho fichero para añadir/quitar documentos tanto de anuncios como de usuarios siempre que se respete la estructura que dicta el [modelo](modelosDB.md).
 
 
 ## <a id="entornosEjecucion"></a> Entornos de ejecución.
-Siguiendo las recomendaciones [^performanceEnv] de [expressjs](http://expressjs.com), se podrá arrancar la API tanto en modo `development` como en modo `production`.
+Siguiendo las [recomendaciones][performanceEnv] de [expressjs], se podrá arrancar la API tanto en modo `development` como en modo `production`.
 
 ### 1. <a id="entornoDev"></a> Entorno de desarrollo.
 Para arrancar en este entorno basta con ejecutar lo siguiente desde la línea de comandos en el directorio de nuestra aplicación:
 
 ```shell
-$ npm run dev
+nodepop/$ npm run dev
 ```
 
 Esto lanzará la aplicación de forma que:
 
 * Activará el modo debug.
-* Escuchará las peticiones por **HTTP**. No utiliza HTTPS.
 * No usará **clusters**.
 
 
@@ -133,18 +138,44 @@ Esto lanzará la aplicación de forma que:
 Ejecutar en línea de comandos desde el directorio de la aplicación:
 
 ```shell
-$ npm run start
+nodepop/$ npm run start
 ```
 
 Esto lanzará la aplicación de forma que:
 
 * Desactivará el modo debug.
-* Escuchará las peticiones por **HTTPS**.
-* Usará los **clusters** que le permita el sistema en el que esté instalada.
+* Usará los **clusters** que le permita el sistema en el que esté corriendo.
 
 ## <a id="docApi"></a> Documentación de la API.
 Puede encontrar más información de la API en [aquí](./doc/index.html).
 
-[^performanceEnv]: Performance Best Practices Usin Express | expressjs: <http://expressjs.com/en/advanced/best-practice-performance.html>
 
-[^bcryptMongoBlog]: **brypt** | NPM: <https://github.com/kelektiv/node.bcrypt.js>
+## <a id="devOps"></a> Práctica DevOps.
+Para la evaluación de esta práctica se puede acceder a las siguientes direcciones:
+
+**<https://diegogs.es>**  
+Accederá a la web estática hecha a partir de una plantilla de [Start Bootstrap][startBootstrap].
+
+**<https://nodepop.diegogs.es/>**  
+Accederá a la vista web que devuelve la aplicación nodepop, donde se puede comprobar que **nginx** sirve los estáticos gracias a la cabecera personalizada **`X-Owner: duduah`**.
+
+El acceso para comprobar el funcionamiento de la API, que devolverá la información y los errores en formato **JSON**, se puede ver en la documentación que se indica accediendo a 
+
+**<https://34.216.33.119/>**  
+Aunque la IP está Accederá a la web estática hecha a partir de una plantilla de [Start Bootstrap][startBootstrap].
+
+
+
+<!-- Links-->
+
+[performanceEnv]: http://expressjs.com/en/advanced/best-practice-performance.html "Performance Best Practices Usin Express | expressjs"
+
+[bcryptMongoBlog]: https://github.com/kelektiv/node.bcrypt.js "brypt | NPM"
+
+[expressjs]: http://expressjs.com "expressjs"
+
+[startBootstrap]: https://startbootstrap.com "Start Bootstrap"
+
+[diegogs]: https://diegogs.es "Diego GS"
+[nodepop]: https://nodepop.diegogs.es/ "nodepop"
+[ippublica]: https://34.216.33.119/ "Acceso por IP: 34.216.33.119"
