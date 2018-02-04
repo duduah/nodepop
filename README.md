@@ -162,7 +162,7 @@ Accederá a la vista web que devuelve la aplicación nodepop, donde se puede com
 El acceso para comprobar el funcionamiento de la API, que devolverá la información y los errores en formato **JSON**, se puede ver en la documentación que se indica accediendo a 
 
 **<https://34.216.33.119/>**  
-Aunque la IP está Accederá a la web estática hecha a partir de una plantilla de [Start Bootstrap][startBootstrap].
+Se indica también la IP pública para comprobar el acceso a través de ella a la parte estática, hecha a partir de una plantilla de [Start Bootstrap][startBootstrap].
 
 
 
